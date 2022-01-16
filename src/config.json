@@ -29,6 +29,8 @@
 
 	"AVAILABLE_LISTEN_FILTERS": ["date", "description", "tags"],
 
+	"CONCLUDE_DURATION": 5
+
 	"speakerConfig": {
 		"sync": true,
 		"prefetch": true,
