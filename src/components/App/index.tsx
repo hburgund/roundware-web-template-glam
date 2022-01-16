@@ -24,6 +24,8 @@ import SpeakButton from './SpeakButton';
 import useStyles from './styles';
 import config from 'config.json';
 import UserConfirmation from '../UserConfirmation';
+import ConcludeButton from './ConcludeButton';
+import ConcludePage from 'components/ConcludePage';
 if (process.env.REACT_APP_GOOGLE_ANALYTICS_ID) {
 	ReactGA.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_ID);
 	ReactGA.pageview(window.location.pathname + window.location.search);
@@ -73,6 +75,7 @@ export const App = () => {
 						<Route exact path='/' component={LandingPage} />
 						<Route path='/listen' component={ListenPage} />
 						<Route path='/speak' component={SpeakPage} />
+						<Route path='/conclusion' component={ConcludePage} />
 						<Route path='/debug' component={DebugPage} />
 					</Switch>
 				</div>
@@ -84,9 +87,11 @@ export const App = () => {
 									<SpeakButton />
 								</Link>
 							</div>
+
 							<div>
 								<ListenFilterDrawer />
 								<RoundwareMixerControl />
+								<ConcludeButton />
 							</div>
 						</Route>
 						<Route path={`/`} exact>
