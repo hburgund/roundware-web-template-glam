@@ -22,7 +22,7 @@ export interface IRoundwareContext {
 	geoListenMode: GeoListenModeType;
 	userFilter: string;
 	playingAssets: IAssetData[];
-
+	codaAudio: HTMLAudioElement;
 	descriptionFilter: string | null;
 	// state modification functions
 	selectAsset: React.Dispatch<React.SetStateAction<IAssetData | null>>;
