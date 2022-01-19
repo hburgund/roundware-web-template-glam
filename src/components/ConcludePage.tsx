@@ -8,24 +8,41 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import ReplayIcon from '@mui/icons-material/Replay';
 import Fade from '@mui/material/Fade';
-import { Link } from 'react-router-dom';
+import MuiLink from '@mui/material/Link';
+import { useHistory, Link } from 'react-router-dom';
+import config from 'config.json';
+import { useRoundware } from 'hooks';
 interface Props {}
 
 const ConcludePage = (props: Props) => {
+	const { codaAudio } = useRoundware();
+	const history = useHistory();
+	const handleOnStartAgain = () => {
+		codaAudio.pause();
+		history.push(`/listen`);
+	};
 	return (
-		<Fade in timeout={1300}>
+		<Fade in timeout={1500}>
 			<Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }} component={Paper}>
 				<Stack spacing={5} justifyContent='center' alignItems='center'>
 					<Typography variant='h4' textAlign='center'>
 						Tell us about your experience
 					</Typography>
 
-					<Rating size='large' />
-					<Link to={'/'}>
-						<Button size='large' startIcon={<ReplayIcon />} variant='outlined'>
-							Start Again
+					{config.SURVEY_LINK && (
+						<Button sx={{ textTransform: 'none' }} variant='outlined' href={config.SURVEY_LINK}>
+							<Stack>
+								<Typography variant='h6' textAlign='center'>
+									Take a Survey
+								</Typography>
+								<MuiLink href={config.SURVEY_LINK}>{config.SURVEY_LINK}</MuiLink>
+							</Stack>
 						</Button>
-					</Link>
+					)}
+
+					<Button size='large' onClick={handleOnStartAgain} startIcon={<ReplayIcon />} variant='outlined'>
+						Start Again
+					</Button>
 				</Stack>
 			</Container>
 		</Fade>
