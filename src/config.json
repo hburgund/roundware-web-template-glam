@@ -1,7 +1,7 @@
 {
 	"ROUNDWARE_SERVER_URL": "https://prod.roundware.com/api/2",
 	"ROUNDWARE_SERVER_BASE_URL": "https://prod.roundware.com/",
-	"ROUNDWARE_DEFAULT_PROJECT_ID": 10,
+	"ROUNDWARE_DEFAULT_PROJECT_ID": 37,
 	"ROUNDWARE_INITIAL_LATITUDE": 50,
 	"ROUNDWARE_INITIAL_LONGITUDE": 15,
 
@@ -28,5 +28,6 @@
 
 	"AVAILABLE_LISTEN_FILTERS": ["date", "description", "tags"],
 
-	"CONCLUDE_DURATION": 5
+	"CONCLUDE_DURATION": 5,
+	"SURVEY_LINK": "https://forms.gle/nMfJNPozSW1KFddu7"
 }
