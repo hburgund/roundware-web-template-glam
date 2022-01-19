@@ -11,6 +11,8 @@ import { useDeviceID } from '../hooks/useDeviceID';
 import { ITagLookup } from '../types';
 import { getDefaultListenMode } from '../utils';
 import config from 'config.json';
+import codaMp3 from 'assets/coda.mp3';
+
 interface PropTypes {
 	children: React.ReactNode;
 }
@@ -39,7 +41,7 @@ const RoundwareProvider = (props: PropTypes) => {
 	const assetPage = useMemo(() => assetPageNonMemoized, [assetPageNonMemoized]);
 	const [playingAssets, setPlayingAssets] = useState<IRoundwareContext[`playingAssets`]>([]);
 	const [, forceUpdate] = useReducer((x) => !x, false);
-
+	const codaAudio = useMemo(() => new Audio(codaMp3), []);
 	const updatePlaying = (assets: IAssetData[] | undefined) => {
 		setPlayingAssets(assets || []);
 	};
@@ -252,6 +254,7 @@ const RoundwareProvider = (props: PropTypes) => {
 				userFilter,
 				playingAssets,
 				descriptionFilter,
+				codaAudio,
 				// state modification functions
 				selectAsset,
 				selectTags,
