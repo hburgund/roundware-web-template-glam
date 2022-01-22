@@ -29,5 +29,6 @@
 	"AVAILABLE_LISTEN_FILTERS": ["date", "description", "tags"],
 
 	"CONCLUDE_DURATION": 5,
+	"AUTO_CONCLUDE_DURATION": 10,
 	"SURVEY_LINK": "https://forms.gle/nMfJNPozSW1KFddu7"
 }
