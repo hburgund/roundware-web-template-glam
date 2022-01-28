@@ -9,7 +9,7 @@ import { useRoundware } from '../../hooks';
 import { GeoListenMode } from 'roundware-web-framework';
 
 const RoundwareMixerControl = () => {
-	const { roundware, forceUpdate } = useRoundware();
+	const { roundware, forceUpdate, setupAutoConclude } = useRoundware();
 	const [snackbarOpen, setSnackbarOpen] = useState(false);
 	const isPlaying = roundware.mixer && roundware.mixer.playing;
 
@@ -47,6 +47,7 @@ const RoundwareMixerControl = () => {
 		<>
 			<Button
 				onClick={() => {
+					setupAutoConclude();
 					if (!roundware.mixer || !roundware.mixer?.playlist) {
 						roundware.activateMixer({ geoListenMode: GeoListenMode.MANUAL }).then(() => {
 							if (roundware && roundware.uiConfig && roundware.uiConfig.listen && roundware.uiConfig.listen[0]) {
