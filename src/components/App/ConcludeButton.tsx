@@ -1,48 +1,21 @@
-import React, { useState, useMemo, useEffect } from 'react';
-import IconButton from '@mui/material/IconButton';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import { useHistory } from 'react-router-dom';
 import Backdrop from '@mui/material/Backdrop';
-import { useRoundware } from 'hooks';
-
+import IconButton from '@mui/material/IconButton';
 import config from 'config.json';
+import { useRoundware } from 'hooks';
+import React from 'react';
+
 interface Props {}
 const duration = config.CONCLUDE_DURATION;
 const ConcludeButton = (props: Props) => {
-	const history = useHistory();
-	const { roundware, codaAudio } = useRoundware();
-	const [conclude, setConclude] = useState(false);
+	const { concludeStarted, conclude, setConcludeStarted } = useRoundware();
 
-	useEffect(() => {
-		if (config.AUTO_CONCLUDE_DURATION) {
-			setTimeout(() => {
-				setConclude(true);
-				roundware.mixer?.playlist?.tracks.forEach((t) => t.fadeOut(duration));
-				roundware.mixer?.speakerTracks?.forEach((s) => s.player.fade(0, duration));
-			}, config.AUTO_CONCLUDE_DURATION * 1000);
-			setTimeout(() => {
-				history.push(`/conclusion`);
-				roundware.mixer.stop();
-			}, (config.AUTO_CONCLUDE_DURATION + duration) * 1000);
-		}
-	}, []);
-
-	const handleClick = () => {
-		setConclude(true);
-		codaAudio.play();
-		roundware.mixer?.playlist?.tracks.forEach((t) => t.fadeOut(duration));
-		roundware.mixer?.speakerTracks?.forEach((s) => s.player.fade(0, duration));
-		setTimeout(() => {
-			roundware.mixer.stop();
-			history.push(`/conclusion`);
-		}, duration * 1000);
-	};
 	return (
 		<>
-			<IconButton size='large' title='Conclude' onClick={handleClick}>
+			<IconButton size='large' title='Conclude' onClick={() => conclude(true)}>
 				<ExitToAppIcon />
 			</IconButton>
-			<Backdrop open={conclude} transitionDuration={duration * 1000} onClick={() => setConclude(false)} />
+			<Backdrop open={concludeStarted} onTransitionEnd={() => setConcludeStarted(false)} transitionDuration={duration * 1000} />
 		</>
 	);
 };
