@@ -8,6 +8,7 @@ import { defaultTheme } from '../styles';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import NoSleepProvider from './NoSleepProvider';
+import UserConfirmation from 'components/UserConfirmation';
 declare module '@mui/styles/defaultTheme' {
 	interface DefaultTheme extends Theme {}
 }
@@ -19,10 +20,10 @@ interface Props {
 const Providers = (props: Props) => {
 	const [theme] = useState(defaultTheme);
 	return (
-		<NoSleepProvider>
-			<RoundwareProvider>
-				<UiConfigProvider>
-					<BrowserRouter>
+		<BrowserRouter getUserConfirmation={(message, callback) => UserConfirmation(message, callback)}>
+			<NoSleepProvider>
+				<RoundwareProvider>
+					<UiConfigProvider>
 						<URLSyncProvider>
 							<StyledEngineProvider injectFirst>
 								<ThemeProvider theme={theme}>
@@ -30,10 +31,10 @@ const Providers = (props: Props) => {
 								</ThemeProvider>
 							</StyledEngineProvider>
 						</URLSyncProvider>
-					</BrowserRouter>
-				</UiConfigProvider>
-			</RoundwareProvider>
-		</NoSleepProvider>
+					</UiConfigProvider>
+				</RoundwareProvider>
+			</NoSleepProvider>
+		</BrowserRouter>
 	);
 };
 
