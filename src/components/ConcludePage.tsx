@@ -15,10 +15,11 @@ import { useRoundware } from 'hooks';
 interface Props {}
 
 const ConcludePage = (props: Props) => {
-	const { codaAudio } = useRoundware();
+	const { codaAudio, resetAutoConclude } = useRoundware();
 	const history = useHistory();
 	const handleOnStartAgain = () => {
 		codaAudio.pause();
+		resetAutoConclude();
 		history.push(`/listen`);
 	};
 	return (
