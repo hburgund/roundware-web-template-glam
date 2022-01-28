@@ -23,7 +23,7 @@ import SpeakPage from '../SpeakPage';
 import SpeakButton from './SpeakButton';
 import useStyles from './styles';
 import config from 'config.json';
-import UserConfirmation from '../UserConfirmation';
+
 import ConcludeButton from './ConcludeButton';
 import ConcludePage from 'components/ConcludePage';
 if (process.env.REACT_APP_GOOGLE_ANALYTICS_ID) {
@@ -47,68 +47,66 @@ export const App = () => {
 
 	return (
 		<>
-			<BrowserRouter getUserConfirmation={(message, callback) => UserConfirmation(message, callback)}>
-				<CssBaseline />
+			<CssBaseline />
 
-				<Helmet>
-					<meta charSet='utf-8' />
-					<title>{roundware.project ? roundware.project.projectName : ''}</title>
-					<link rel='icon' type='image/png' href={favicon} sizes='16x16' />
-					<meta name='theme-color' content={theme.palette.primary.main} />
-				</Helmet>
+			<Helmet>
+				<meta charSet='utf-8' />
+				<title>{roundware.project ? roundware.project.projectName : ''}</title>
+				<link rel='icon' type='image/png' href={favicon} sizes='16x16' />
+				<meta name='theme-color' content={theme.palette.primary.main} />
+			</Helmet>
 
-				<AppBar className={classes.topBar} position='fixed'>
-					<Toolbar className={classes.topBar}>
-						<Typography variant='h6' className={classes.title}>
-							<NavLink to='/' className={classes.title}>
-								{roundware.project ? roundware.project.projectName : ''}
-							</NavLink>
-						</Typography>
-						<NavLink to='/'>
-							<img src={isExtraSmallScreen ? logoMinimal : logoSmall} className={classes.navLogo} />
+			<AppBar className={classes.topBar} position='fixed'>
+				<Toolbar className={classes.topBar}>
+					<Typography variant='h6' className={classes.title}>
+						<NavLink to='/' className={classes.title}>
+							{roundware.project ? roundware.project.projectName : ''}
 						</NavLink>
-					</Toolbar>
-				</AppBar>
-				<Toolbar />
-				<div className={classes.appContainer}>
-					<Switch>
-						<Route exact path='/' component={LandingPage} />
-						<Route path='/listen' component={ListenPage} />
-						<Route path='/speak' component={SpeakPage} />
-						<Route path='/conclusion' component={ConcludePage} />
-						<Route path='/debug' component={DebugPage} />
-					</Switch>
-				</div>
-				<AppBar position='sticky' className={classes.bottomBar}>
-					<Toolbar style={{ width: '100%', justifyContent: 'space-between' }}>
-						<Route path='/listen'>
-							<div>
-								{roundware?.project?.data?.speak_enabled && (
-									<Link to={`/speak`}>
-										<SpeakButton />
-									</Link>
-								)}
-							</div>
-
-							<div>
-								<ListenFilterDrawer />
-								<RoundwareMixerControl />
-								<ConcludeButton />
-							</div>
-						</Route>
-						<Route path={`/`} exact>
-							<div />
-						</Route>
-						<Route path={`/speak`}>
-							<div />
-						</Route>
-						{config.DEBUG_MODE === true ? <div style={{ color: 'white' }}>mixer: {roundware.mixer && JSON.stringify(roundware.mixer.mixParams)}</div> : null}
+					</Typography>
+					<NavLink to='/'>
+						<img src={isExtraSmallScreen ? logoMinimal : logoSmall} className={classes.navLogo} />
+					</NavLink>
+				</Toolbar>
+			</AppBar>
+			<Toolbar />
+			<div className={classes.appContainer}>
+				<Switch>
+					<Route exact path='/' component={LandingPage} />
+					<Route path='/listen' component={ListenPage} />
+					<Route path='/speak' component={SpeakPage} />
+					<Route path='/conclusion' component={ConcludePage} />
+					<Route path='/debug' component={DebugPage} />
+				</Switch>
+			</div>
+			<AppBar position='sticky' className={classes.bottomBar}>
+				<Toolbar style={{ width: '100%', justifyContent: 'space-between' }}>
+					<Route path='/listen'>
 						<div>
-							<InfoPopup />
+							{roundware?.project?.data?.speak_enabled && (
+								<Link to={`/speak`}>
+									<SpeakButton />
+								</Link>
+							)}
 						</div>
-					</Toolbar>
-				</AppBar>
-			</BrowserRouter>
+
+						<div>
+							<ListenFilterDrawer />
+							<RoundwareMixerControl />
+							<ConcludeButton />
+						</div>
+					</Route>
+					<Route path={`/`} exact>
+						<div />
+					</Route>
+					<Route path={`/speak`}>
+						<div />
+					</Route>
+					{config.DEBUG_MODE === true ? <div style={{ color: 'white' }}>mixer: {roundware.mixer && JSON.stringify(roundware.mixer.mixParams)}</div> : null}
+					<div>
+						<InfoPopup />
+					</div>
+				</Toolbar>
+			</AppBar>
 		</>
 	);
 };
