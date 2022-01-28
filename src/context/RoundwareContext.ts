@@ -24,6 +24,7 @@ export interface IRoundwareContext {
 	playingAssets: IAssetData[];
 	codaAudio: HTMLAudioElement;
 	descriptionFilter: string | null;
+	concludeStarted: boolean;
 	// state modification functions
 	selectAsset: React.Dispatch<React.SetStateAction<IAssetData | null>>;
 	selectTags: (tags: number[] | null, group: ITagGroup) => void;
@@ -39,9 +40,13 @@ export interface IRoundwareContext {
 		}>
 	>;
 	setDescriptionFilter: React.Dispatch<React.SetStateAction<string | null>>;
+	setConcludeStarted: React.Dispatch<React.SetStateAction<boolean>>;
 	forceUpdate: React.DispatchWithoutAction;
 	setGeoListenMode: (modeName: GeoListenModeType) => void;
 	updateAssets: (assetData?: IAssetData[]) => void;
+	resetAutoConclude: () => void;
+	setupAutoConclude: () => void;
+	conclude: (playAudio?: boolean) => void;
 	// computed properties
 	assetPage: IAssetData[];
 	assetsReady: boolean;
