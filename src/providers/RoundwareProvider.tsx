@@ -12,6 +12,7 @@ import { ITagLookup } from '../types';
 import { getDefaultListenMode } from '../utils';
 import config from 'config.json';
 import codaMp3 from 'assets/coda.mp3';
+import { useHistory } from 'react-router-dom';
 
 interface PropTypes {
 	children: React.ReactNode;
@@ -237,6 +238,38 @@ const RoundwareProvider = (props: PropTypes) => {
 		}
 	};
 
+	const history = useHistory();
+
+	const [concludeStarted, setConcludeStarted] = useState(false);
+	const [concludeTimeout, setConcludeTimeout] = useState<NodeJS.Timeout | null>(null);
+	const setupAutoConclude: IRoundwareContext[`setupAutoConclude`] = () => {
+		if (config.AUTO_CONCLUDE_DURATION && !concludeTimeout) {
+			const timeoutId = setTimeout(() => {
+				conclude(true);
+			}, config.AUTO_CONCLUDE_DURATION * 1000);
+			setConcludeTimeout(timeoutId);
+		}
+	};
+	const conclude: IRoundwareContext[`conclude`] = async (play = true) => {
+		setConcludeStarted(true);
+		if (play) {
+			await codaAudio.play().catch((e) => console.error(`Failed to play code audio`, e));
+		}
+		roundware.mixer?.playlist?.tracks.forEach((t) => t.fadeOut(config.CONCLUDE_DURATION));
+		roundware.mixer?.speakerTracks?.forEach((s) => s.player.fade(0, config.CONCLUDE_DURATION));
+		setTimeout(() => {
+			history.push(`/conclusion`);
+			forceUpdate();
+			roundware.mixer.stop();
+			setConcludeTimeout(null);
+		}, config.CONCLUDE_DURATION * 1000);
+	};
+
+	const resetAutoConclude = () => {
+		setConcludeTimeout(null);
+		setConcludeStarted(false);
+	};
+
 	return (
 		<RoundwareContext.Provider
 			value={{
@@ -255,6 +288,7 @@ const RoundwareProvider = (props: PropTypes) => {
 				playingAssets,
 				descriptionFilter,
 				codaAudio,
+				concludeStarted,
 				// state modification functions
 				selectAsset,
 				selectTags,
@@ -268,6 +302,10 @@ const RoundwareProvider = (props: PropTypes) => {
 				setGeoListenMode,
 				updateAssets,
 				setDescriptionFilter,
+				setupAutoConclude,
+				conclude,
+				setConcludeStarted,
+				resetAutoConclude,
 				// computed properties
 				assetPage,
 				assetsReady,
