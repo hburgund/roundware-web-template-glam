@@ -245,7 +245,7 @@ const RoundwareProvider = (props: PropTypes) => {
 	const setupAutoConclude: IRoundwareContext[`setupAutoConclude`] = () => {
 		if (config.AUTO_CONCLUDE_DURATION && !concludeTimeout) {
 			const timeoutId = setTimeout(() => {
-				conclude(true);
+				conclude(false);
 			}, config.AUTO_CONCLUDE_DURATION * 1000);
 			setConcludeTimeout(timeoutId);
 		}
@@ -266,8 +266,11 @@ const RoundwareProvider = (props: PropTypes) => {
 	};
 
 	const resetAutoConclude = () => {
+		codaAudio.pause();
+		codaAudio.fastSeek(0);
 		setConcludeTimeout(null);
 		setConcludeStarted(false);
+		history.push(`/listen`);
 	};
 
 	return (
