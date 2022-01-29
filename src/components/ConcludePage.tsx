@@ -15,12 +15,10 @@ import { useRoundware } from 'hooks';
 interface Props {}
 
 const ConcludePage = (props: Props) => {
-	const { codaAudio, resetAutoConclude } = useRoundware();
+	const { resetAutoConclude } = useRoundware();
 	const history = useHistory();
 	const handleOnStartAgain = () => {
-		codaAudio.pause();
 		resetAutoConclude();
-		history.push(`/listen`);
 	};
 	return (
 		<Fade in timeout={1500}>
