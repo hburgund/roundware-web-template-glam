@@ -82,9 +82,11 @@ export const App = () => {
 				<Toolbar style={{ width: '100%', justifyContent: 'space-between' }}>
 					<Route path='/listen'>
 						<div>
-							<Link to={`/speak`}>
-								<SpeakButton />
-							</Link>
+							{roundware?.project?.data?.speak_enabled && (
+								<Link to={`/speak`}>
+									<SpeakButton />
+								</Link>
+							)}
 						</div>
 
 						<div>

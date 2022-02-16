@@ -17,6 +17,7 @@
 	"DEBUG_MODE": false,
 	"ALLOW_SPEAK_TAGS": true,
 
+	"AUTOPLAY": true,
 	"DEFAULT_SPEAK_TAGS": [91, 218],
 
 	"AVAILABLE_LISTEN_MODES": "device",
@@ -28,7 +29,13 @@
 
 	"AVAILABLE_LISTEN_FILTERS": ["date", "description", "tags"],
 
-	"CONCLUDE_DURATION": 2,
-	"AUTO_CONCLUDE_DURATION": 5,
-	"SURVEY_LINK": "https://forms.gle/nMfJNPozSW1KFddu7"
+	"AUTO_CONCLUDE_DURATION": 10,
+	"CONCLUDE_DURATION": 5,
+	"SURVEY_LINK": "https://forms.gle/nMfJNPozSW1KFddu7",
+
+	"speakerConfig": {
+		"sync": true,
+		"prefetch": true,
+		"loop": false
+	}
 }
