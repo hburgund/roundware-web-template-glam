@@ -9,6 +9,7 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import NoSleepProvider from './NoSleepProvider';
 import UserConfirmation from 'components/UserConfirmation';
+import ErrorBoundary from '../components/ErrorBoundary';
 declare module '@mui/styles/defaultTheme' {
 	interface DefaultTheme extends Theme {}
 }
@@ -21,19 +22,21 @@ const Providers = (props: Props) => {
 	const [theme] = useState(defaultTheme);
 	return (
 		<BrowserRouter getUserConfirmation={(message, callback) => UserConfirmation(message, callback)}>
-			<NoSleepProvider>
-				<RoundwareProvider>
-					<UiConfigProvider>
-						<URLSyncProvider>
-							<StyledEngineProvider injectFirst>
-								<ThemeProvider theme={theme}>
-									<LocalizationProvider dateAdapter={AdapterDateFns}>{props.children}</LocalizationProvider>
-								</ThemeProvider>
-							</StyledEngineProvider>
-						</URLSyncProvider>
-					</UiConfigProvider>
-				</RoundwareProvider>
-			</NoSleepProvider>
+			<StyledEngineProvider injectFirst>
+				<ThemeProvider theme={theme}>
+					<ErrorBoundary>
+						<NoSleepProvider>
+							<RoundwareProvider>
+								<UiConfigProvider>
+									<URLSyncProvider>
+										<LocalizationProvider dateAdapter={AdapterDateFns}>{props.children}</LocalizationProvider>
+									</URLSyncProvider>
+								</UiConfigProvider>
+							</RoundwareProvider>
+						</NoSleepProvider>
+					</ErrorBoundary>
+				</ThemeProvider>
+			</StyledEngineProvider>
 		</BrowserRouter>
 	);
 };
