@@ -28,7 +28,7 @@ const SpeakerLoadingIndicator = (props: Props) => {
 		});
 	}, [roundware?.mixer?.speakerTracks]);
 
-	if (loadingSpeakers.every((s) => s.value == 100)) return null;
+	if (loadingSpeakers.every((s) => s.value == 100)) return <></>;
 	return (
 		<Backdrop open sx={(theme) => ({ zIndex: theme.zIndex.appBar + 1 })}>
 			<Stack spacing={1} p={2}>
