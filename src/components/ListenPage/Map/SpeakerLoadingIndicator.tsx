@@ -15,7 +15,7 @@ const SpeakerLoadingIndicator = (props: Props) => {
 		roundware.mixer.speakerTracks?.forEach((sp) => {
 			const player = sp.player;
 			player.onLoadingProgress((per: number) => {
-				if (per <= 100)
+				if (!player.loaded)
 					setLoadingSpeakers((prev) => [
 						...prev.filter((s) => s.id != sp.speakerId),
 						{
@@ -28,7 +28,7 @@ const SpeakerLoadingIndicator = (props: Props) => {
 		});
 	}, [roundware?.mixer?.speakerTracks]);
 
-	if (loadingSpeakers.every((s) => s.value == 100)) return <></>;
+	if (!loadingSpeakers?.length) return <></>;
 	return (
 		<Backdrop open sx={(theme) => ({ zIndex: theme.zIndex.appBar + 1 })}>
 			<Stack spacing={1} p={2}>
@@ -36,7 +36,7 @@ const SpeakerLoadingIndicator = (props: Props) => {
 				{loadingSpeakers
 					.sort((a, b) => (a.id > b.id ? -1 : 1))
 					.map((s) => (
-						<LinearProgress variant='determinate' value={s.value} key={s.id} />
+						<LinearProgress variant={s.value == 100 ? `indeterminate` : `determinate`} value={s.value} key={s.id} />
 					))}
 			</Stack>
 		</Backdrop>

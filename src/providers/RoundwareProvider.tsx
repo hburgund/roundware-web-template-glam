@@ -268,7 +268,7 @@ const RoundwareProvider = (props: PropTypes) => {
 
 	const resetAutoConclude = () => {
 		codaAudio.pause();
-		codaAudio.fastSeek(0);
+		codaAudio.currentTime = 0;
 		setConcludeTimeout(null);
 		setConcludeStarted(false);
 		history.push(`/listen`);
