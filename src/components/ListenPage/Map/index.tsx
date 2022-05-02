@@ -12,6 +12,9 @@ import config from 'config.json';
 import SpeakerPolygons from './SpeakerPolygons';
 import SpeakerReplayButton from './SpeakerReplayButton';
 import SpeakerLoadingIndicator from './SpeakerLoadingIndicator';
+import { useURLSync } from 'context/URLContext';
+import ShareDialog from 'components/App/ShareDialog';
+import ResetButton from './ResetButton';
 const useStyles = makeStyles((theme) => {
 	return {
 		roundwareMap: {
@@ -29,6 +32,7 @@ const RoundwareMap = (props: RoundwareMapProps) => {
 	const { roundware } = useRoundware();
 	const [map, setMap] = useState<google.maps.Map | undefined>();
 
+	const { deleteFromURL, params } = useURLSync();
 	const updateListenerLocation = (newLocation?: Coordinates) => {
 		if (!map) {
 			return;
@@ -38,6 +42,7 @@ const RoundwareMap = (props: RoundwareMapProps) => {
 			const center = map.getCenter();
 			location = { latitude: center!.lat(), longitude: center!.lng() };
 		}
+		deleteFromURL([`longitude`, `latitude`]);
 
 		roundware.updateLocation(location!);
 		console.log('updated location on framework', location);
@@ -59,10 +64,16 @@ const RoundwareMap = (props: RoundwareMapProps) => {
 		}
 		const styledMapType = new google.maps.StyledMapType(RoundwareMapStyle, { name: 'Street Map' });
 		map.mapTypes.set('styled_map', styledMapType);
-
+		const searchParams = new URLSearchParams(window.location.search);
+		const urlLatitude = searchParams.get('latitude');
+		const urlLongitude = searchParams.get('longitude');
+		const urlZoom = searchParams.get('zoom');
 		map.setOptions({
-			center: { lat: roundware?.project?.location?.latitude!, lng: roundware?.project?.location?.longitude! },
-			zoom: 5,
+			center: {
+				lat: parseFloat(typeof urlLatitude == 'string' ? urlLatitude : roundware?.project?.location?.latitude!?.toString()),
+				lng: parseFloat(typeof urlLongitude == 'string' ? urlLongitude : roundware?.project?.location?.longitude!?.toString()),
+			},
+			zoom: parseInt(typeof urlZoom == 'string' ? urlZoom : '5'),
 			zoomControl: true,
 			draggable: true,
 			mapTypeControl: false,
@@ -82,6 +93,16 @@ const RoundwareMap = (props: RoundwareMapProps) => {
 			},
 			restriction,
 		});
+		map.addListener('zoom_changed', () => {
+			const currentZoom = map.getZoom();
+			const paramZoom = new URLSearchParams(window.location.search).get('zoom');
+			if (paramZoom) {
+				if (Number(currentZoom) != Number(paramZoom)) {
+					map.setZoom(Number(paramZoom));
+				}
+			}
+			deleteFromURL('zoom');
+		});
 
 		setMap(map);
 	};
@@ -98,6 +119,8 @@ const RoundwareMap = (props: RoundwareMapProps) => {
 						{config.SHOW_SPEAKERS_ON_MAP == true && <SpeakerPolygons />}
 						<SpeakerLoadingIndicator />
 						{!config.speakerConfig.loop && <SpeakerReplayButton />}
+						<ShareDialog />
+						<ResetButton updateLocation={updateListenerLocation} />
 					</GoogleMap>
 				</LoadScript>
 			) : null}

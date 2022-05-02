@@ -14,6 +14,7 @@ import config from 'config.json';
 import codaMp3 from 'assets/coda.mp3';
 import { useHistory } from 'react-router-dom';
 
+import { join } from 'lodash';
 interface PropTypes {
 	children: React.ReactNode;
 }
@@ -125,6 +126,7 @@ const RoundwareProvider = (props: PropTypes) => {
 			// then filter by start and end dates
 			if (afterDateFilter && beforeDateFilter) {
 				const dateMatch = asset.created! <= beforeDateFilter.toISOString() && asset.created! >= afterDateFilter.toISOString() ? true : false;
+
 				if (!dateMatch) {
 					return false;
 				}
@@ -132,6 +134,7 @@ const RoundwareProvider = (props: PropTypes) => {
 
 			if (descriptionFilter) {
 				const descMatch = asset.description?.toLowerCase().indexOf(descriptionFilter.toLowerCase()) !== -1;
+
 				if (!descMatch) return false;
 			}
 			return true;
@@ -166,7 +169,9 @@ const RoundwareProvider = (props: PropTypes) => {
 			});
 
 			roundware.mixer.updateParams({ listenTagIds: listenTagIds });
-
+			roundware.events?.logEvent(`filter_stream`, {
+				tag_ids: listenTagIds,
+			});
 			return newFilters;
 		});
 	};
@@ -179,9 +184,15 @@ const RoundwareProvider = (props: PropTypes) => {
 		if (typeof project_id == 'undefined') return console.error(`ROUNDWARE_DEFAULT_PROJECT_ID was missing from env variables`);
 		// maybe we build the site with a default listener location,
 		// otherwise we go to null island
+
+		// location from url params take precendence;
+		const searchParams = new URLSearchParams(location.search);
+
+		const urlLatitude = searchParams.get('latitude');
+		const urlLongitude = searchParams.get('longitude');
 		const initial_loc = {
-			latitude: config.ROUNDWARE_INITIAL_LATITUDE || 0,
-			longitude: config.ROUNDWARE_INITIAL_LONGITUDE || 0,
+			latitude: parseFloat(typeof urlLatitude == 'string' ? urlLatitude : (config.ROUNDWARE_INITIAL_LATITUDE || 0).toString()),
+			longitude: parseFloat(typeof urlLongitude == 'string' ? urlLongitude : (config.ROUNDWARE_INITIAL_LONGITUDE || 0).toString()),
 		};
 
 		const roundwareOptions: IRoundwareConstructorOptions = {
@@ -202,7 +213,10 @@ const RoundwareProvider = (props: PropTypes) => {
 
 		roundware.connect().then(() => {
 			// set the initial listener location to the project default
-			roundware.updateLocation(roundware.project.location);
+			if (!searchParams.has('latitude')) {
+				// and when url params are not passed
+				roundware.updateLocation(roundware.project.location);
+			}
 			roundware.onUpdateLocation = forceUpdate;
 			roundware.onUpdateAssets = updateAssets;
 			roundware.onPlayAssets = updatePlaying;
@@ -274,6 +288,12 @@ const RoundwareProvider = (props: PropTypes) => {
 		history.push(`/listen`);
 	};
 
+	const resetFilters = () => {
+		setAfterDateFilter(null);
+		setBeforeDateFilter(null);
+		setDescriptionFilter(null);
+		setSelectedTags(null);
+	};
 	return (
 		<RoundwareContext.Provider
 			value={{
@@ -310,6 +330,7 @@ const RoundwareProvider = (props: PropTypes) => {
 				conclude,
 				setConcludeStarted,
 				resetAutoConclude,
+				resetFilters,
 				// computed properties
 				assetPage,
 				assetsReady,

@@ -47,6 +47,7 @@ export interface IRoundwareContext {
 	resetAutoConclude: () => void;
 	setupAutoConclude: () => void;
 	conclude: (playAudio?: boolean) => void;
+	resetFilters: () => void;
 	// computed properties
 	assetPage: IAssetData[];
 	assetsReady: boolean;

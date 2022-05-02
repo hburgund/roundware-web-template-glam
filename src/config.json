@@ -22,7 +22,7 @@
 
 	"AVAILABLE_LISTEN_MODES": "device",
 
-	"INFOWINDOW_DISPLAY_ITEMS": ["date", "tags", "photo", "description", "text", "audio", "actions"],
+	"INFOWINDOW_DISPLAY_ITEMS": ["tags", "photo", "audio", "actions"],
 
 	"SHOW_SPEAKERS_ON_MAP": true,
 	"SPEAKER_STROKE_COLORS": ["#044389", "#FCFF4B", "#FFAD05", "#7CAFC4", "#63A375", "#EF27A6"],
@@ -34,8 +34,16 @@
 	"SURVEY_LINK": "https://forms.gle/nMfJNPozSW1KFddu7",
 
 	"speakerConfig": {
-		"sync": true,
-		"prefetch": true,
-		"loop": false
+		"sync": false,
+		"prefetch": false,
+		"loop": true,
+		"acceptableDelayMs": 50,
+		"syncCheckInterval": 2500
+	},
+
+	"zoom": {
+		"high": 19,
+		"low": 5,
+		"walking": 22
 	}
 }

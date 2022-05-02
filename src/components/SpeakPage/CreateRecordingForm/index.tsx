@@ -29,13 +29,14 @@ import LegalAgreementForm from '../../LegalAgreementForm';
 import AdditionalMediaMenu from './AdditionalMediaMenu';
 import { useStyles } from './styles';
 import config from 'config.json';
+
 const visualizerOptions = {
 	type: 'bars',
 };
 
 const CreateRecordingForm = () => {
 	const draftRecording = useRoundwareDraft();
-	const { roundware, tagLookup, updateAssets } = useRoundware();
+	const { roundware, tagLookup, updateAssets, selectAsset, resetFilters } = useRoundware();
 	let [wave, set_wave] = useState(new Wave());
 	const [isRecording, set_is_recording] = useState(false);
 	const [draftRecordingMedia, set_draft_recording_media] = useState<IAudioData | null>(null);
@@ -53,7 +54,7 @@ const CreateRecordingForm = () => {
 	const classes = useStyles();
 	const theme = useTheme();
 	const isExtraSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
-
+	
 	const startRecording = () => {
 		if (!navigator.mediaDevices) {
 			set_error({
@@ -69,6 +70,7 @@ const CreateRecordingForm = () => {
 			.then((stream) => {
 				set_draft_recording_media(null);
 				set_stream(stream);
+				roundware.events?.logEvent(`start_record`);
 				wave.stopStream();
 				const newWave = new Wave();
 				set_wave(newWave);
@@ -100,6 +102,7 @@ const CreateRecordingForm = () => {
 	}, [draftMediaUrl]);
 
 	const stopRecording = () => {
+		roundware.events?.logEvent(`end_record`);
 		if (typeof recorder !== 'undefined') {
 			recorder.stop();
 		}
@@ -339,7 +342,7 @@ const CreateRecordingForm = () => {
 								}
 
 								// include default speak tags
-								const finalTags = draftRecording.tags;
+								const finalTags = selected_tags.map((t) => t.tag_id);
 								config.DEFAULT_SPEAK_TAGS?.forEach((t) => {
 									if (!finalTags.includes(t)) {
 										finalTags.push(t);
@@ -371,6 +374,7 @@ const CreateRecordingForm = () => {
 										});
 									}
 
+									selectAsset(null);
 									set_success(asset);
 
 									updateAssets();
@@ -402,7 +406,8 @@ const CreateRecordingForm = () => {
 							color={'primary'}
 							disabled={success == null}
 							onClick={() => {
-								if (success !== null && Array.isArray(success.envelope_ids) && success.envelope_ids.length > 0) {
+								if (success != null && Array.isArray(success.envelope_ids) && success.envelope_ids.length > 0) {
+									resetFilters();
 									history.push(`/listen?eid=${success.envelope_ids[0]}`);
 								}
 							}}
