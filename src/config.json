@@ -3,12 +3,20 @@
 	"ROUNDWARE_SERVER_BASE_URL": "https://prod.roundware.com/",
 	"ROUNDWARE_DEFAULT_PROJECT_ID": 37,
 	"ROUNDWARE_INITIAL_LATITUDE": 50,
-	"ROUNDWARE_INITIAL_LONGITUDE": 15,
+	"ROUNDWARE_INITIAL_LONGITUDE": 27,
 
 	"ALLOW_PHOTOS": true,
 	"ALLOW_TEXT": true,
 
 	"USE_LISTEN_MAP_BOUNDS": true,
+	"SHOW_BOUNDS_MARKERS": false,
+	"MAP_BOUNDS": "none",
+	"MAP_BOUNDS_POINTS": {
+		"swLat": 3,
+		"swLng": 5,
+		"neLat": 5,
+		"neLng": 43
+	},
 
 	"KEEP_PAUSED_ASSETS": true,
 
@@ -24,7 +32,7 @@
 
 	"INFOWINDOW_DISPLAY_ITEMS": ["tags", "photo", "audio", "actions"],
 
-	"SHOW_SPEAKERS_ON_MAP": true,
+	"SPEAKERS_DISPLAY": "images",
 	"SPEAKER_STROKE_COLORS": ["#044389", "#FCFF4B", "#FFAD05", "#7CAFC4", "#63A375", "#EF27A6"],
 
 	"AVAILABLE_LISTEN_FILTERS": ["date", "description", "tags"],
