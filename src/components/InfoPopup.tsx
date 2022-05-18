@@ -7,8 +7,10 @@ import DialogContentText from '@mui/material/DialogContentText';
 import Typography from '@mui/material/Typography';
 import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
 import Divider from '@mui/material/Divider';
 import Link from '@mui/material/Link';
+import InfoIcon from '@mui/icons-material/Info';
 
 const InfoPopup = () => {
 	const [open, setOpen] = useState(false);
@@ -23,7 +25,9 @@ const InfoPopup = () => {
 
 	return (
 		<div>
-			<Button onClick={handleClickOpen}>INFO</Button>
+			<IconButton onClick={handleClickOpen}>
+				<InfoIcon />
+			</IconButton>
 			<Dialog open={open} onClose={handleClose} aria-labelledby='alert-dialog-title' aria-describedby='alert-dialog-description'>
 				<DialogTitle id='alert-dialog-title'>What is Roundware?</DialogTitle>
 				<DialogContent dividers>
