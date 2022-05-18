@@ -6,7 +6,7 @@ interface TagDisplayProps {
 }
 export const TagDisplay = ({ tagId }: TagDisplayProps) => {
 	const { roundware } = useRoundware();
-	const description = roundware.findTagDescription(tagId, 'speak');
+	const description = roundware.findTagDescription(tagId, 'listen');
 	if (description) {
 		return (
 			<>
