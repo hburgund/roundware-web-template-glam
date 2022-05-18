@@ -51,7 +51,7 @@ const SpeakerImages = (props: Props) => {
 				);
 
 				// take mean distance
-				const avgDistance = (Math.min(...distances) + Math.max(...distances)) / 2;
+				const avgDistance = (Math.min(...distances) + Math.max(...distances)) / 1;
 
 				// find square points
 				const squarePoints: Position[] = [];
