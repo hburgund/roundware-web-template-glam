@@ -3,7 +3,7 @@ import { createTheme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 export const defaultTheme = createTheme({
 	palette: {
-		mode: 'dark',
+		mode: 'light',
 		primary: {
 			main: '#719EE3',
 		},
@@ -12,7 +12,7 @@ export const defaultTheme = createTheme({
 		MuiButton: {
 			styleOverrides: {
 				textPrimary: {
-					color: '#ffffff !important',
+					color: '#000000 !important',
 				},
 			},
 		},

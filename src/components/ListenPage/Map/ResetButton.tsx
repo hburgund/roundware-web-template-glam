@@ -25,7 +25,7 @@ const ResetButton = ({ updateLocation }: Props) => {
 				position: 'fixed',
 				zIndex: 100,
 				right: 20,
-				bottom: 68,
+				bottom: 92,
 				backgroundColor: '#cccccc',
 				'&:hover': {
 					backgroundColor: '#aaaaaa',

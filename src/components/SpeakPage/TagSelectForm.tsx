@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => {
 			flexGrow: 1,
 			margin: 'auto',
 			marginBottom: 70,
+			boxShadow: 'none',
 		},
 		cardGrid: {
 			marginBottom: theme.spacing(1),
@@ -30,7 +31,10 @@ const useStyles = makeStyles((theme) => {
 			marginRight: theme.spacing(3),
 			padding: theme.spacing(4),
 			cursor: 'pointer',
-			backgroundColor: theme.palette.grey[700],
+			backgroundColor: 'transparent',
+			boxShadow: 'none',
+			border: '1px solid #0000001f',
+			borderRadius: 25,
 			[theme.breakpoints.down('md')]: {
 				padding: theme.spacing(3),
 			},

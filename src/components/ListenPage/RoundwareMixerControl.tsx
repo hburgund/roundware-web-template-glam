@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import PauseCircleOutlineIcon from '@mui/icons-material/PauseCircleOutline';
+import PauseCircleIcon from '@mui/icons-material/PauseCircle';
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
+import PlayCircleFilledIcon from '@mui/icons-material/PlayCircleFilled';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import Button from '@mui/material/Button';
 import Snackbar, { SnackbarProps } from '@mui/material/Snackbar';
@@ -69,7 +71,15 @@ const RoundwareMixerControl = () => {
 					}
 				}}
 			>
-				{roundware && roundware.mixer && roundware.mixer.playing ? <PauseCircleOutlineIcon fontSize='large' /> : <PlayCircleOutlineIcon fontSize='large' />}
+				{roundware && roundware.mixer && roundware.mixer.playing ?
+					<PauseCircleIcon
+						sx={{ color:'#0C9AEA', height:'2em', width:'2em'}}
+						fontSize='large'
+					/> :
+					<PlayCircleFilledIcon
+						sx={{ color:'#2ECE6E', height:'2em', width:'2em'}}
+						fontSize='large'
+					/>}
 			</Button>
 			<Button
 				disabled={isPlaying ? false : true}

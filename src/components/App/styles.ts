@@ -11,7 +11,7 @@ const useStyles = makeStyles(() => {
 			top: 'auto',
 			bottom: 0,
 			flexFlow: 'row',
-			backgroundColor: defaultTheme.palette.grey[900],
+			backgroundColor: defaultTheme.palette.grey[300],
 		},
 		actionButton: {
 			margin: 'auto',

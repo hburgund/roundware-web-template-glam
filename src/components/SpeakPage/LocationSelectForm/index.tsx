@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme: Theme) => {
 			flexGrow: 1,
 			margin: 'auto',
 			marginBottom: 70,
+			boxShadow: 'none',
 		},
 		button: {
 			margin: 'auto',
@@ -47,7 +48,7 @@ const useStyles = makeStyles((theme: Theme) => {
 			},
 		},
 		mapContainerDiv: {
-			height: '60vh',
+			height: '50vh',
 			margin: theme.spacing(2, 0),
 			[theme.breakpoints.down('sm')]: {
 				height: '50vh',
@@ -127,7 +128,7 @@ const LocationSelectForm = () => {
 										lat: draftRecording.location.latitude || 0,
 										lng: draftRecording.location.longitude || 0,
 									},
-									zoom: 9,
+									zoom: 14,
 									zoomControl: true,
 									draggable: true,
 									mapTypeControl: false,

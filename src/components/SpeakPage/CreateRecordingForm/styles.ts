@@ -8,6 +8,7 @@ export const useStyles = makeStyles((theme) => {
 			marginBottom: 70,
 			backgroundColor: theme.palette.background.default,
 			color: theme.palette.text.primary,
+			boxShadow: 'none',
 		},
 		iconButtonLabel: {
 			display: 'flex',
@@ -30,10 +31,10 @@ export const useStyles = makeStyles((theme) => {
 			},
 		},
 		audioVisualizer: {
-			backgroundColor: '#333',
+			backgroundColor: 'transparent',
 			padding: '0 !important',
 			height: 150,
-			width: 300,
+			width: "100%",
 			[theme.breakpoints.down('sm')]: {
 				height: 150,
 			},

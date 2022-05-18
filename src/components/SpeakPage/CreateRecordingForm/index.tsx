@@ -54,7 +54,7 @@ const CreateRecordingForm = () => {
 	const classes = useStyles();
 	const theme = useTheme();
 	const isExtraSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
-	
+
 	const startRecording = () => {
 		if (!navigator.mediaDevices) {
 			set_error({
@@ -154,7 +154,7 @@ const CreateRecordingForm = () => {
 
 			<Grid container alignItems={'center'} direction={'column'} spacing={2} justifyContent='center'>
 				<Grid item mt={3}>
-					<Container>
+					<Container style={{ padding: 0 }}>
 						{/*{ selected_tags.map( tag => <Typography variant={"h6"}key={tag.id}>{tag.tag_display_text}</Typography> ) }*/}
 						{
 							<Typography variant={'h5'} className={classes.tagGroupHeaderLabel} key={selected_tags.length > 0 ? selected_tags[selected_tags.length - 1]?.id : 1} gutterBottom>
@@ -166,12 +166,12 @@ const CreateRecordingForm = () => {
 				<ErrorDialog error={error} set_error={set_error} />
 				{!draftMediaUrl && (
 					<Grid item xs={12} className={classes.audioVisualizer}>
-						<canvas id='audio-visualizer' style={{ height: isExtraSmallScreen ? 100 : 150, width: 300 }} />
+						<canvas id='audio-visualizer' style={{ height: isExtraSmallScreen ? 100 : 150, width: '100%' }} />
 					</Grid>
 				)}
 
 				{draftMediaUrl ? (
-					<Grid item xs={12}>
+					<Grid item xs={12} style={{ width: '100%' }}>
 						{/*}<audio id={"draft-audio"} src={draftMediaUrl} controls />*/}
 						{/* id prop not availabe on this component prop types - Shreyas */}
 						{/* <AudioCard src={draftMediaUrl} mute={false} forward={false} backward={false} width={300} volume={false} /> */}

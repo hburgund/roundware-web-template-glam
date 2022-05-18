@@ -1,5 +1,7 @@
 import PauseIcon from '@mui/icons-material/Pause';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import PauseCircleIcon from '@mui/icons-material/PauseCircle';
+import PlayCircleFilledIcon from '@mui/icons-material/PlayCircleFilled';
 import { Box, IconButton, LinearProgress } from '@mui/material';
 import React, { useState } from 'react';
 import { WaveForm, WaveSurfer } from 'wavesurfer-react';
@@ -58,14 +60,17 @@ const AudioPlayer = ({ size = 'small', src }: PropTypes): JSX.Element | null => 
 
 	if (!src) return null;
 	return (
-		<div style={{ width: size === 'small' ? '280px' : '360px', minHeight: 160 }}>
+		<div style={{ width: size === 'small' ? '100%' : '100%', minHeight: 160 }}>
 			<WaveSurfer plugins={plugins} onMount={handleMount}>
 				<WaveForm
 					id={'audio-player'}
 					fillParent={true}
 					mediaControls={true}
 					height={size === 'small' ? 64 : 128}
-					waveColor='purple'
+					width={'100%'}
+					waveColor='grey'
+					barWidth='2'
+					barMinHeight='2'
 					// maxCanvasWidth={size === "small" ? 4000 : 6000}
 				></WaveForm>
 			</WaveSurfer>
@@ -75,7 +80,15 @@ const AudioPlayer = ({ size = 'small', src }: PropTypes): JSX.Element | null => 
 				) : (
 					<>
 						<IconButton onClick={handlePlay} size={size}>
-							{playing ? <PauseIcon fontSize={size} /> : <PlayArrowIcon fontSize={size} />}
+							{playing ?
+								<PauseCircleIcon
+									fontSize={'large'}
+									sx={{ color:'#0C9AEA', height:'3em', width:'3em' }}
+								/> :
+								<PlayCircleFilledIcon
+									fontSize={size}
+									sx={{ color:'#2ECE6E', height:'3em', width:'3em'  }}
+								/>}
 						</IconButton>
 					</>
 				)}

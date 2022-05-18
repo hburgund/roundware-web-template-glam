@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => {
 			position: 'fixed',
 			zIndex: 100,
 			left: 20,
-			bottom: 68,
+			bottom: 92,
 			backgroundColor: '#cccccc',
 			'&:hover': {
 				backgroundColor: '#aaaaaa',
