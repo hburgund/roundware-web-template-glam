@@ -81,7 +81,7 @@ const RoundwareMixerControl = () => {
 						fontSize='large'
 					/>}
 			</Button>
-			<Button
+			{/*<Button
 				disabled={isPlaying ? false : true}
 				onClick={() => {
 					if (!roundware.mixer || !roundware.mixer.playlist) {
@@ -94,7 +94,7 @@ const RoundwareMixerControl = () => {
 				}}
 			>
 				<SkipNextIcon />
-			</Button>
+			</Button>*/}
 			<Snackbar open={snackbarOpen} autoHideDuration={4000} onClose={handleSnackbarClose} anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }} style={{ marginBottom: 50 }}>
 				<Alert elevation={6} severity='success'>
 					Remixing audio: skipping ahead!

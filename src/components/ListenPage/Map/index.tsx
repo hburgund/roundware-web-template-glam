@@ -124,7 +124,7 @@ const RoundwareMap = (props: RoundwareMapProps) => {
 					<AssetLoadingOverlay />
 					<GoogleMap mapContainerClassName={classes.roundwareMap + ' ' + props.className} onZoomChanged={updateListenerLocation} onDragEnd={updateListenerLocation} onLoad={onLoad}>
 						<AssetLayer updateLocation={updateListenerLocation} />
-						<RangeCircleOverlay updateLocation={updateListenerLocation} />
+						{/*<RangeCircleOverlay updateLocation={updateListenerLocation} />*/}
 						{map && roundware.mixer?.playlist && <WalkingModeButton />}
 						{config.SPEAKERS_DISPLAY == 'polygons' && <SpeakerPolygons />}
 						{config.SPEAKERS_DISPLAY == 'images' && <SpeakerImages />}
