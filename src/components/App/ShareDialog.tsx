@@ -15,13 +15,13 @@ type Props = {};
 const ShareDialog = (props: Props) => {
 	const { params } = React.useContext(URLContext);
 	const { showShare, handleCloseShare } = useUIContext();
+	const location = useLocation();
+	const useMapContext = location.pathname == `/listen` ? useGoogleMap : () => null;
+	const map = useMapContext();
 	const { roundware, selectedAsset } = useRoundware();
 
-	const location = useLocation();
-	const useMapContext = window.location.pathname == `/listen` ? useGoogleMap : () => null;
 	const [includeGeo, setIncludeGeo] = useState(false);
 	const isAssetSelected = useMemo(() => params.has('aid') || params.has('eid'), [params, location]);
-	const map = useMapContext();
 	const { link, showOptions } = useMemo(() => {
 		const searchParams = new URLSearchParams();
 
