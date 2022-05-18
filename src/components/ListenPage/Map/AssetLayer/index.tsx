@@ -101,7 +101,7 @@ const AssetLayer = ({ updateLocation }: { updateLocation: (newLocation: Coordina
 			maxZoom={config.zoom.high - 1}
 			onClick={handleClick}
 			onLoad={setMarkerClusterer}
-			minimumClusterSize={3}
+			minimumClusterSize={8}
 			calculator={(markers, numStyles) => {
 				// Most of this implementation is copied from the default calculator for
 				// React google maps. Change the `styles` property to configure how
