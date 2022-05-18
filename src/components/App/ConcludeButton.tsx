@@ -1,6 +1,7 @@
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import Backdrop from '@mui/material/Backdrop';
 import IconButton from '@mui/material/IconButton';
+import Button from '@mui/material/Button';
 import config from 'config.json';
 import { useRoundware } from 'hooks';
 import React from 'react';
@@ -12,9 +13,10 @@ const ConcludeButton = (props: Props) => {
 
 	return (
 		<>
-			<IconButton size='large' title='Conclude' onClick={() => conclude(true)}>
+			{/*<IconButton size='large' title='Conclude' onClick={() => conclude(true)}>
 				<ExitToAppIcon />
-			</IconButton>
+			</IconButton>*/}
+			<Button onClick={() => conclude(true)}>Conclude</Button>
 			<Backdrop open={concludeStarted} onTransitionEnd={() => setConcludeStarted(false)} transitionDuration={duration * 1000} />
 		</>
 	);

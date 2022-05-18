@@ -67,9 +67,12 @@ export const App = () => {
 							{roundware.project ? roundware.project.projectName : ''}
 						</NavLink>
 					</Typography>
-					<NavLink to='/'>
+					{/*<NavLink to='/'>
 						<img src={isExtraSmallScreen ? logoMinimal : logoSmall} className={classes.navLogo} />
-					</NavLink>
+					</NavLink>*/}
+					<Route path='/listen'>
+						<ConcludeButton />
+					</Route>
 				</Toolbar>
 			</AppBar>
 
@@ -99,9 +102,8 @@ export const App = () => {
 					</Stack>
 					<div>
 						<Route path='/listen'>
-							<ListenFilterDrawer />
+							{/*<ListenFilterDrawer />*/}
 							<RoundwareMixerControl />
-							<ConcludeButton />
 						</Route>
 					</div>
 
