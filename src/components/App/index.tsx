@@ -42,81 +42,78 @@ export const App = () => {
 	const { roundware } = useRoundware();
 	const isExtraSmallScreen = useMediaQuery<boolean>(theme.breakpoints.down('xs'));
 
-	if (process.env.REACT_APP_GOOGLE_ANALYTICS_ID) {
-		let location = useLocation();
+	let location = useLocation();
 
-		useEffect(() => {
+	useEffect(() => {
+		if (process.env.REACT_APP_GOOGLE_ANALYTICS_ID) {
 			ReactGA.pageview(window.location.pathname + window.location.search);
-		}, [location.pathname]);
-	}
-
+		}
+	}, [location.pathname]);
 	return (
 		<>
-			<BrowserRouter getUserConfirmation={(message, callback) => UserConfirmation(message, callback)}>
-				<CssBaseline />
+			<CssBaseline />
 
-				<Helmet>
-					<meta charSet='utf-8' />
-					<title>{roundware.project ? roundware.project.projectName : ''}</title>
-					<link rel='icon' type='image/png' href={favicon} sizes='16x16' />
-					<meta name='theme-color' content={theme.palette.primary.main} />
-				</Helmet>
+			<Helmet>
+				<meta charSet='utf-8' />
+				<title>{roundware.project ? roundware.project.projectName : ''}</title>
+				<link rel='icon' type='image/png' href={favicon} sizes='16x16' />
+				<meta name='theme-color' content={theme.palette.primary.main} />
+			</Helmet>
 
-				<AppBar className={classes.topBar} position='fixed'>
-					<Toolbar className={classes.topBar}>
-						<Typography variant='h6' className={classes.title}>
-							<NavLink to='/' className={classes.title}>
-								{roundware.project ? roundware.project.projectName : ''}
-							</NavLink>
-						</Typography>
-						<NavLink to='/'>
-							<img src={isExtraSmallScreen ? logoMinimal : logoSmall} className={classes.navLogo} />
+			<AppBar className={classes.topBar} position='fixed'>
+				<Toolbar className={classes.topBar}>
+					<Typography variant='h6' className={classes.title}>
+						<NavLink to='/' className={classes.title}>
+							{roundware.project ? roundware.project.projectName : ''}
 						</NavLink>
-					</Toolbar>
-				</AppBar>
+					</Typography>
+					<NavLink to='/'>
+						<img src={isExtraSmallScreen ? logoMinimal : logoSmall} className={classes.navLogo} />
+					</NavLink>
+				</Toolbar>
+			</AppBar>
 
-				<PlatformMessage getMessage={getMessageOnLoad} />
-				<Toolbar />
-				<div className={classes.appContainer}>
-					<Switch>
-						<Route exact path='/' component={LandingPage} />
-						<Route path='/listen' component={ListenPage} />
-						<Route path='/speak' component={SpeakPage} />
-						<Route path='/conclusion' component={ConcludePage} />
-						<Route path='/debug' component={DebugPage} />
-					</Switch>
-				</div>
+			<PlatformMessage getMessage={getMessageOnLoad} />
+			<Toolbar />
+			<div className={classes.appContainer}>
+				<Switch>
+					<Route exact path='/' component={LandingPage} />
+					<Route path='/listen' component={ListenPage} />
+					<Route path='/speak' component={SpeakPage} />
+					<Route path='/conclusion' component={ConcludePage} />
+					<Route path='/debug' component={DebugPage} />
+				</Switch>
+			</div>
 
-				<AppBar position='sticky' className={classes.bottomBar}>
-					<Toolbar style={{ width: '100%', justifyContent: 'space-between' }}>
-						<Stack spacing={1} direction='row'>
-							<ShareButton />
-							<Route path='/listen'>
-								{roundware?.project?.data?.speak_enabled && (
-									<Link to={`/speak`}>
-										<SpeakButton />
-									</Link>
-								)}
-							</Route>
-						</Stack>
-						<div>
-							<Route path='/listen'>
-								<ListenFilterDrawer />
-								<RoundwareMixerControl />
-								<ConcludeButton />
-							</Route>
-						</div>
+			<AppBar position='sticky' className={classes.bottomBar}>
+				<Toolbar style={{ width: '100%', justifyContent: 'space-between' }}>
+					<Stack spacing={1} direction='row'>
+						<ShareButton />
+						<Route path='/listen'>
+							{roundware?.project?.data?.speak_enabled && (
+								<Link to={`/speak`}>
+									<SpeakButton />
+								</Link>
+							)}
+						</Route>
+					</Stack>
+					<div>
+						<Route path='/listen'>
+							<ListenFilterDrawer />
+							<RoundwareMixerControl />
+							<ConcludeButton />
+						</Route>
+					</div>
 
-						<div>
-							<InfoPopup />
-						</div>
-					</Toolbar>
-					<Switch>
-						<Route path='/listen' exact component={() => <React.Fragment></React.Fragment>} />
-						<Route path='/' component={ShareDialog} />
-					</Switch>
-				</AppBar>
-			</BrowserRouter>
+					<div>
+						<InfoPopup />
+					</div>
+				</Toolbar>
+				<Switch>
+					<Route path='/listen' exact component={() => <React.Fragment></React.Fragment>} />
+					<Route path='/' component={ShareDialog} />
+				</Switch>
+			</AppBar>
 		</>
 	);
 };
