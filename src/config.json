@@ -37,8 +37,8 @@
 
 	"AVAILABLE_LISTEN_FILTERS": ["date", "description", "tags"],
 
-	"AUTO_CONCLUDE_DURATION": 30,
-	"CONCLUDE_DURATION": 5,
+	"AUTO_CONCLUDE_DURATION": 992,
+	"CONCLUDE_DURATION": 2,
 	"SURVEY_LINK": "https://forms.gle/nMfJNPozSW1KFddu7",
 
 	"speakerConfig": {
@@ -50,8 +50,8 @@
 	},
 
 	"zoom": {
-		"high": 19,
-		"low": 5,
+		"high": 17,
+		"low": 15,
 		"walking": 22
 	}
 }
