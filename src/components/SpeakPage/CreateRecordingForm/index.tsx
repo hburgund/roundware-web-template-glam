@@ -230,7 +230,7 @@ const CreateRecordingForm = () => {
 							{({ remainingTime }: { remainingTime: number }) => (
 								<Grid container direction='column' alignItems='center'>
 									<Grid item>
-										<Typography variant='h3' style={{ textAlign: 'center' }}>
+										<Typography variant='h3' style={{ textAlign: 'center', color: '#000000' }}>
 											{Math.floor(remainingTime / 60) +
 												':' +
 												(remainingTime % 60).toLocaleString('en-US', {
@@ -419,7 +419,7 @@ const CreateRecordingForm = () => {
 							color={'primary'}
 							onClick={() => {
 								draftRecording.reset();
-								history.push('/speak');
+								history.push('/speak/tags/0');
 							}}
 						>
 							Create New Recording
