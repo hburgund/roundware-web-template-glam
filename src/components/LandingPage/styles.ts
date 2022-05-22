@@ -13,16 +13,23 @@ const useStyles = makeStyles((theme) => {
 			margin: 'auto',
 		},
 		root: {
-			margin: theme.spacing(2),
+			maxWidth: '100vw',
+			paddingRight: 0,
+			paddingLeft: 0,
 		},
 		landingHeader: {
-			backgroundImage: `linear-gradient(180deg, #000000ff, #ffffff00), url(${landingHeaderImage})`,
+			backgroundImage: `url(${landingHeaderImage})`,
 			backgroundSize: 'cover',
 			height: '100%',
 			backgroundPosition: 'center',
+			backgroundAttachment: 'fixed',
+			// marginTop: -64,
 		},
 		landingTitle: {
-			fontSize: '6em',
+			fontSize: '4em',
+			height: '18vh',
+			color: "#ffffff",
+			fontFamily: "Hoefler Text",
 			[theme.breakpoints.down('lg')]: {
 				fontSize: '4em',
 			},
@@ -33,6 +40,7 @@ const useStyles = makeStyles((theme) => {
 		landingTagline: {
 			textAlign: 'center',
 			height: '15vh',
+			color: "#ffffff",
 			paddingTop: 15,
 			[theme.breakpoints.down('sm')]: {
 				lineHeight: '1.2em',

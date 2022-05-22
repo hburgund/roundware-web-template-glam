@@ -19,11 +19,14 @@ const useStyles = makeStyles(() => {
 		appContainer: {
 			display: 'flex',
 			flexGrow: 1,
+			width: '100vw',
 		},
 		title: {
 			flexGrow: 1,
 			color: 'white',
 			textDecoration: 'none',
+			textTransform: 'uppercase',
+			fontFamily: 'Hoefler Text',
 		},
 		navLogo: {
 			height: config.NAV_LOGO_HEIGHT || 34,

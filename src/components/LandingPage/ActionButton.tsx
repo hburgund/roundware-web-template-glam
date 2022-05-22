@@ -49,6 +49,9 @@ export const useStyles = makeStyles((theme: { spacing: (arg0: number) => any; br
 			width: 300,
 			// padding: 50
 			height: 100,
+			color: "#000000",
+			backgroundColor: "#ffffff",
+			borderRadius: 25,
 			[theme.breakpoints.down('md')]: {
 				width: 250,
 				height: 75,
@@ -56,6 +59,8 @@ export const useStyles = makeStyles((theme: { spacing: (arg0: number) => any; br
 		},
 		buttonLabel: {
 			margin: theme.spacing(2),
+			fontFamily: "Hoefler Text",
+			textTransform: "none",
 			[theme.breakpoints.down('md')]: {
 				fontSize: '2rem',
 			},

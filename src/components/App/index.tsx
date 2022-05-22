@@ -92,13 +92,13 @@ export const App = () => {
 				<Toolbar style={{ width: '100%', justifyContent: 'space-between' }}>
 					<Stack spacing={1} direction='row'>
 						<ShareButton />
-						<Route path='/listen'>
+						{/*<Route path='/listen'>
 							{roundware?.project?.data?.speak_enabled && (
 								<Link to={`/speak`}>
 									<SpeakButton />
 								</Link>
 							)}
-						</Route>
+						</Route>*/}
 					</Stack>
 					<div>
 						<Route path='/listen'>

@@ -5,7 +5,7 @@ export const defaultTheme = createTheme({
 	palette: {
 		mode: 'light',
 		primary: {
-			main: '#719EE3',
+			main: '#DA0083',
 		},
 	},
 	components: {
@@ -23,7 +23,7 @@ export const lightTheme = createTheme({
 	palette: {
 		mode: 'light',
 		primary: {
-			main: '#159095',
+			main: '#F2C349',
 		},
 	},
 });
@@ -32,5 +32,6 @@ export const useDefaultStyles = makeStyles(() => ({
 	root: {
 		height: '100vh',
 		display: 'flex',
+		// maxWidth: 'none !important',
 	},
 }));

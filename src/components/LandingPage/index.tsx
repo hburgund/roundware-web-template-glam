@@ -21,27 +21,31 @@ export const LandingPage = () => {
 	}
 
 	return (
-		<Container style={{ paddingRight: 0, paddingLeft: 0 }}>
+		<Container className={classes.root} style={{ paddingRight: 0, paddingLeft: 0 }}>
 			<Grid container className={classes.landingHeader}>
 				<Grid container justifyContent='center' style={{ height: '100px' }}>
-					<Grid item style={{ margin: 'auto', height: '15vh', textAlign: 'center', paddingTop: 15 }} sm={12}>
-						{/*<Typography
+					<Grid item style={{ margin: 'auto', height: '18vh', textAlign: 'center', paddingTop: 15 }} sm={12}>
+						<Typography
               variant={"h2"}
               className={classes.landingTitle}
             >
-              {roundware.project && roundware.project.projectName}
-            </Typography>*/}
-						<img src={banner} className={classes.landingBanner} />
+              FAMILY
+							<br />
+							ASSOCIATION
+            </Typography>
+						{/*<img src={banner} className={classes.landingBanner} />*/}
 					</Grid>
 					<Grid item sm={12}>
 						<Typography variant={'subtitle1'} className={classes.landingTagline} style={{ textAlign: 'center', height: '15vh' }}>
-							Contributory Audio Augmented Reality
+							Co-Commissioned by
 							<br />
-							for Art, Education and Documentary
+							<strong>University Settlement and</strong>
+							<br />
+							<strong>Music At The Anthology</strong>
 						</Typography>
 					</Grid>
 				</Grid>
-				<Grid container justifyContent='center' style={{ height: '200px' }}>
+				<Grid container justifyContent='center' style={{ height: '450px', alignContent: "end" }}>
 					{project.data?.listen_enabled && (
 						<Grid item>
 							<ActionButton
@@ -67,18 +71,18 @@ export const LandingPage = () => {
 										forceUpdate();
 									}
 								}}
-								label={'Listen'}
+								label={'Begin'}
 								linkTo={'/listen'}
 								style={{ width: '100%' }}
 							/>
 						</Grid>
 					)}
 
-					{project.data?.speak_enabled && (
+					{/*{project.data?.speak_enabled && (
 						<Grid item>
 							<ActionButton label={'Speak'} linkTo={'/speak'} />
 						</Grid>
-					)}
+					)}*/}
 				</Grid>
 			</Grid>
 		</Container>
