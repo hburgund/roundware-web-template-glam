@@ -262,7 +262,8 @@ const RoundwareProvider = (props: PropTypes) => {
 	const setupAutoConclude: IRoundwareContext[`setupAutoConclude`] = () => {
 		if (config.AUTO_CONCLUDE_DURATION && !concludeTimeout) {
 			const timeoutId = setTimeout(() => {
-				conclude(false);
+				conclude(true);
+				setConcludeTimeout(null);
 			}, config.AUTO_CONCLUDE_DURATION * 1000);
 			setConcludeTimeout(timeoutId);
 		}
