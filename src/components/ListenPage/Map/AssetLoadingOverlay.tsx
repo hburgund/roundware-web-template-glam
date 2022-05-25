@@ -12,6 +12,7 @@ export const useLoadingStyles = makeStyles((theme) => {
 			display: 'flex',
 			flexDirection: 'column',
 			backgroundColor: theme.palette.grey[900],
+			color: '#dddddd',
 		},
 		loadingMessage: {
 			padding: theme.spacing(2),
