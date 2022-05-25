@@ -16,7 +16,7 @@ const ConcludeButton = (props: Props) => {
 			{/*<IconButton size='large' title='Conclude' onClick={() => conclude(true)}>
 				<ExitToAppIcon />
 			</IconButton>*/}
-			<Button onClick={() => conclude(true)}>Conclude</Button>
+			<Button onClick={() => conclude(true)} sx={{color: '#ffffff !important'}}>Conclude</Button>
 			<Backdrop open={concludeStarted} onTransitionEnd={() => setConcludeStarted(false)} transitionDuration={duration * 1000} />
 		</>
 	);

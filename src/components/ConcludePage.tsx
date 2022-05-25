@@ -48,16 +48,6 @@ const ConcludePage = (props: Props) => {
 							Listen Again
 						</Typography>
 					</Button>
-					<Button
-						sx={{ textTransform: 'none', width: '70%', maxWidth: '300px' }}
-						href={'./speak'}
-						startIcon={<MicIcon />}
-						variant='outlined'
-					>
-						<Typography variant='h6' textAlign='center'>
-							Record Reactions
-						</Typography>
-					</Button>
 					{config.SURVEY_LINK && (
 						<Button
 							sx={{ textTransform: 'none', width: '70%', maxWidth: '300px' }}
@@ -70,7 +60,18 @@ const ConcludePage = (props: Props) => {
 							</Typography>
 						</Button>
 					)}
-
+					<Button
+						sx={{ textTransform: 'none', width: '70%', maxWidth: '300px' }}
+						startIcon={<MicIcon />}
+						variant='outlined'
+						onClick={() => {
+							history.push('/speak');
+						}}
+					>
+						<Typography variant='h6' textAlign='center'>
+							Record Reactions
+						</Typography>
+					</Button>
 				</Stack>
 			</Container>
 		</Fade>
