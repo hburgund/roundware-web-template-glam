@@ -23,8 +23,8 @@ export const LandingPage = () => {
 	return (
 		<Container className={classes.root} style={{ paddingRight: 0, paddingLeft: 0 }}>
 			<Grid container className={classes.landingHeader}>
-				<Grid container justifyContent='center' style={{ height: '100px' }}>
-					<Grid item style={{ margin: 'auto', height: '18vh', textAlign: 'center', paddingTop: 15 }} sm={12}>
+				<Grid container justifyContent='center' className={classes.landingTitleBlock}>
+					<Grid item style={{ margin: 'auto', height: '18vh', textAlign: 'center', paddingTop: 15, minWidth: '70vw' }} md={12}>
 						<Typography
               variant={"h2"}
               className={classes.landingTitle}
@@ -36,7 +36,7 @@ export const LandingPage = () => {
 						{/*<img src={banner} className={classes.landingBanner} />*/}
 					</Grid>
 					<Grid item sm={12}>
-						<Typography variant={'subtitle1'} className={classes.landingTagline} style={{ textAlign: 'center', height: '15vh' }}>
+						<Typography variant={'subtitle1'} className={classes.landingTagline}>
 							Co-Commissioned by
 							<br />
 							<strong>University Settlement and</strong>
@@ -45,7 +45,7 @@ export const LandingPage = () => {
 						</Typography>
 					</Grid>
 				</Grid>
-				<Grid container justifyContent='center' style={{ height: '450px', alignContent: "end" }}>
+				<Grid container justifyContent='center' className={classes.landingButtonBlock}>
 					{project.data?.listen_enabled && (
 						<Grid item>
 							<ActionButton

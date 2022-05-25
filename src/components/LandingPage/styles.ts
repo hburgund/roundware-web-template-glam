@@ -25,6 +25,13 @@ const useStyles = makeStyles((theme) => {
 			backgroundAttachment: 'fixed',
 			// marginTop: -64,
 		},
+		landingTitleBlock: {
+			height: '34vh',
+			minWidth: '70vw',
+			[theme.breakpoints.down('sm')]: {
+				// height: 80,
+			},
+		},
 		landingTitle: {
 			fontSize: '4em',
 			height: '18vh',
@@ -35,6 +42,9 @@ const useStyles = makeStyles((theme) => {
 			},
 			[theme.breakpoints.down('md')]: {
 				fontSize: '3em',
+			},
+			[theme.breakpoints.down('sm')]: {
+				fontSize: '2em',
 			},
 		},
 		landingTagline: {
@@ -54,6 +64,11 @@ const useStyles = makeStyles((theme) => {
 				height: 'auto',
 			},
 		},
+		landingButtonBlock: {
+			height: 100,
+			position: "absolute",
+			bottom: '13vh',
+		}
 	};
 });
 

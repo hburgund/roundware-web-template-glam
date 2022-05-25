@@ -56,6 +56,9 @@ export const useStyles = makeStyles((theme: { spacing: (arg0: number) => any; br
 				width: 250,
 				height: 75,
 			},
+			[theme.breakpoints.down('sm')]: {
+				height: 60,
+			},
 		},
 		buttonLabel: {
 			margin: theme.spacing(2),
@@ -63,6 +66,9 @@ export const useStyles = makeStyles((theme: { spacing: (arg0: number) => any; br
 			textTransform: "none",
 			[theme.breakpoints.down('md')]: {
 				fontSize: '2rem',
+			},
+			[theme.breakpoints.down('sm')]: {
+				fontSize: '1.8rem',
 			},
 		},
 	};
