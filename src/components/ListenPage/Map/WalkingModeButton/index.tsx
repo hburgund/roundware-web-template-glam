@@ -6,6 +6,7 @@ import { makeStyles, useTheme } from '@mui/styles';
 import Button from '@mui/material/Button';
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, useMediaQuery } from '@mui/material';
 import DirectionsWalkIcon from '@mui/icons-material/DirectionsWalk';
+import NearMeIcon from '@mui/icons-material/NearMe';
 import MapIcon from '@mui/icons-material/Map';
 import ListenerLocationMarker from './ListenerLocationMarker';
 import clsx from 'clsx';
@@ -224,7 +225,7 @@ const walkingModeButton = () => {
 				</DialogActions>
 			</Dialog>
 			<Button title={geoListenMode == GeoListenMode.AUTOMATIC ? `Enter Map Mode` : `Enter Walking Mode`} className={clsx(classes.walkingModeButton, displayListenModeButton ? null : classes.hidden)} color='primary' disabled={busy} onClick={toggleWalkingMode}>
-				{geoListenMode === GeoListenMode.AUTOMATIC ? <MapIcon fontSize='large' /> : <DirectionsWalkIcon fontSize='large' />}
+				{geoListenMode === GeoListenMode.AUTOMATIC ? <MapIcon fontSize='large' /> : <NearMeIcon fontSize='large' />}
 			</Button>
 			{geoListenMode === GeoListenMode.AUTOMATIC ? <ListenerLocationMarker /> : null}
 		</div>
