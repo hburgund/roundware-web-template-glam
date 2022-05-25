@@ -26,7 +26,7 @@
 	"ALLOW_SPEAK_TAGS": true,
 
 	"AUTOPLAY": false,
-	"DEFAULT_SPEAK_TAGS": [91, 218],
+	"DEFAULT_SPEAK_TAGS": [],
 
 	"AVAILABLE_LISTEN_MODES": "device",
 
@@ -42,7 +42,7 @@
 	"SURVEY_LINK": "https://forms.gle/nMfJNPozSW1KFddu7",
 
 	"speakerConfig": {
-		"sync": false,
+		"sync": true,
 		"prefetch": false,
 		"loop": true,
 		"acceptableDelayMs": 50,
@@ -52,6 +52,6 @@
 	"zoom": {
 		"high": 17,
 		"low": 15,
-		"walking": 22
+		"walking": 19
 	}
 }
