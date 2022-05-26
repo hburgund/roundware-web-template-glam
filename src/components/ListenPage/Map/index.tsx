@@ -96,6 +96,7 @@ const RoundwareMap = (props: RoundwareMapProps) => {
 			},
 			rotateControl: false,
 			mapTypeId: 'styled_map',
+			maxZoom: 18,
 			mapTypeControlOptions: {
 				mapTypeIds: [google.maps.MapTypeId.SATELLITE, 'styled_map'],
 				style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
