@@ -1,13 +1,13 @@
-import AdapterDateFns from '@mui/x-date-pickers/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import { StyledEngineProvider, Theme, ThemeProvider } from '@mui/material';
 import React, { useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { defaultTheme } from '../styles';
-import NoSleepProvider from './NoSleepProvider';
 import RoundwareProvider from './RoundwareProvider';
 import UiConfigProvider from './UIConfigProvider';
 import { URLSyncProvider } from './URLProvider';
+import { defaultTheme } from '../styles';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import NoSleepProvider from './NoSleepProvider';
 declare module '@mui/styles/defaultTheme' {
 	interface DefaultTheme extends Theme {}
 }
