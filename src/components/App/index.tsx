@@ -1,13 +1,16 @@
-import { useMediaQuery, Grid } from '@mui/material';
+import { useMediaQuery } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import CssBaseline from '@mui/material/CssBaseline';
+import Stack from '@mui/material/Stack';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Stack from '@mui/material/Stack';
+import PlatformMessage from 'components/PlatformMessage';
+import config from 'config';
 import React, { useEffect, useState } from 'react';
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga4';
 import Helmet from 'react-helmet';
-import { NavLink, Route, Switch, useLocation, Link, BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Link, NavLink, Route, Switch, useLocation } from 'react-router-dom';
+import { getMessageOnLoad } from 'utils/platformMessages';
 import favicon from '../../assets/favicon.png';
 import logoSmall from '../../assets/rw-full-logo-wb.png';
 import logoMinimal from '../../assets/rw-logo-minimal.png';
@@ -17,24 +20,18 @@ import DebugPage from '../DebugPage';
 import InfoPopup from '../InfoPopup';
 import { LandingPage } from '../LandingPage';
 import ListenPage from '../ListenPage';
-import ListenFilterDrawer from '../ListenPage/ListenFilterDrawer';
+import ListenDrawer from '../ListenPage/ListenDrawer';
 import RoundwareMixerControl from '../ListenPage/RoundwareMixerControl';
 import SpeakPage from '../SpeakPage';
-import SpeakButton from './SpeakButton';
-import useStyles from './styles';
-import config from 'config.json';
 
 import ConcludeButton from './ConcludeButton';
 import ConcludePage from 'components/ConcludePage';
 import UserConfirmation from '../UserConfirmation';
+import DrawerSensitiveWrapper from './DrawerSensitiveWrapper';
 import ShareButton from './ShareButton';
 import ShareDialog from './ShareDialog';
-import { getMessageOnLoad } from 'utils/platformMessages';
-import PlatformMessage from 'components/PlatformMessage';
-if (process.env.REACT_APP_GOOGLE_ANALYTICS_ID) {
-	ReactGA.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_ID);
-	ReactGA.pageview(window.location.pathname + window.location.search);
-}
+import SpeakButton from './SpeakButton';
+import useStyles from './styles';
 
 export const App = () => {
 	const [theme] = useState(defaultTheme);
@@ -45,10 +42,15 @@ export const App = () => {
 	let location = useLocation();
 
 	useEffect(() => {
-		if (process.env.REACT_APP_GOOGLE_ANALYTICS_ID) {
-			ReactGA.pageview(window.location.pathname + window.location.search);
-		}
+		if (!process.env.REACT_APP_GOOGLE_ANALYTICS_ID) return;
+
+		ReactGA.initialize(process.env.REACT_APP_GOOGLE_ANALYTICS_ID);
+		ReactGA.send({
+			hitType: 'pageView',
+			page: window.location.pathname + window.location.search,
+		});
 	}, [location.pathname]);
+
 	return (
 		<>
 			<CssBaseline />

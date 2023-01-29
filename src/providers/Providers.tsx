@@ -21,22 +21,20 @@ interface Props {
 const Providers = (props: Props) => {
 	const [theme] = useState(defaultTheme);
 	return (
-		<BrowserRouter getUserConfirmation={(message, callback) => UserConfirmation(message, callback)}>
-			<StyledEngineProvider injectFirst>
-				<ThemeProvider theme={theme}>
-					<ErrorBoundary>
-						<NoSleepProvider>
-							<RoundwareProvider>
-								<UiConfigProvider>
-									<URLSyncProvider>
-										<LocalizationProvider dateAdapter={AdapterDateFns}>{props.children}</LocalizationProvider>
-									</URLSyncProvider>
-								</UiConfigProvider>
-							</RoundwareProvider>
-						</NoSleepProvider>
-					</ErrorBoundary>
-				</ThemeProvider>
-			</StyledEngineProvider>
+		<BrowserRouter>
+			<NoSleepProvider>
+				<RoundwareProvider>
+					<UiConfigProvider>
+						<URLSyncProvider>
+							<StyledEngineProvider injectFirst>
+								<ThemeProvider theme={theme}>
+									<LocalizationProvider dateAdapter={AdapterDateFns}>{props.children}</LocalizationProvider>
+								</ThemeProvider>
+							</StyledEngineProvider>
+						</URLSyncProvider>
+					</UiConfigProvider>
+				</RoundwareProvider>
+			</NoSleepProvider>
 		</BrowserRouter>
 	);
 };

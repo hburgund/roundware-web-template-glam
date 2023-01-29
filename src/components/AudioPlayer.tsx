@@ -3,7 +3,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseCircleIcon from '@mui/icons-material/PauseCircle';
 import PlayCircleFilledIcon from '@mui/icons-material/PlayCircleFilled';
 import { Box, IconButton, LinearProgress } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { WaveForm, WaveSurfer } from 'wavesurfer-react';
 import { WaveSurferProps, WaveSurferRef } from 'wavesurfer-react/dist/containers/WaveSurfer';
 // @ts-ignore
@@ -57,6 +57,12 @@ const AudioPlayer = ({ size = 'small', src }: PropTypes): JSX.Element | null => 
 		wavesurferRef.current?.play();
 		setPlaying(true);
 	};
+
+	useEffect(() => {
+		return () => {
+			wavesurferRef.current?.destroy();
+		};
+	}, []);
 
 	if (!src) return null;
 	return (
