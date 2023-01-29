@@ -65,8 +65,8 @@ let config: IConfig = {
 	ui: {
 		navLogoHeight: 34,
 		listenSidebar: {
-			defaultOpen: true,
-			active: true,
+			defaultOpen: false,
+			active: false,
 			filter: {
 				active: false,
 				available: ['date', 'tags', 'description'],
