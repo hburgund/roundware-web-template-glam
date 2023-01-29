@@ -73,10 +73,7 @@ const AudioPlayer = ({ size = 'small', src }: PropTypes): JSX.Element | null => 
 					fillParent={true}
 					mediaControls={true}
 					height={size === 'small' ? 64 : 128}
-					width={'100%'}
-					waveColor='grey'
-					barWidth='2'
-					barMinHeight='2'
+					waveColor='purple'
 					// maxCanvasWidth={size === "small" ? 4000 : 6000}
 				></WaveForm>
 			</WaveSurfer>
@@ -86,15 +83,7 @@ const AudioPlayer = ({ size = 'small', src }: PropTypes): JSX.Element | null => 
 				) : (
 					<>
 						<IconButton onClick={handlePlay} size={size}>
-							{playing ?
-								<PauseCircleIcon
-									fontSize={'large'}
-									sx={{ color:'#0C9AEA', height:'3em', width:'3em' }}
-								/> :
-								<PlayCircleFilledIcon
-									fontSize={size}
-									sx={{ color:'#2ECE6E', height:'3em', width:'3em'  }}
-								/>}
+							{playing ? <PauseCircleIcon fontSize={'large'} sx={{ color: '#0C9AEA', height: '3em', width: '3em' }} /> : <PlayCircleFilledIcon fontSize={size} sx={{ color: '#2ECE6E', height: '3em', width: '3em' }} />}
 						</IconButton>
 					</>
 				)}

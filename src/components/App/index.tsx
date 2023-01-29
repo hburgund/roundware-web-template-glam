@@ -52,7 +52,7 @@ export const App = () => {
 	}, [location.pathname]);
 
 	return (
-		<>
+		<BrowserRouter getUserConfirmation={(message, callback) => UserConfirmation(message, callback)}>
 			<CssBaseline />
 
 			<Helmet>
@@ -62,62 +62,62 @@ export const App = () => {
 				<meta name='theme-color' content={theme.palette.primary.main} />
 			</Helmet>
 
-			<AppBar className={classes.topBar} position='fixed'>
-				<Toolbar className={classes.topBar}>
-					<Typography variant='h6' className={classes.title}>
-						<NavLink to='/' className={classes.title}>
-							{roundware.project ? roundware.project.projectName : ''}
-						</NavLink>
-					</Typography>
-					{/*<NavLink to='/'>
+			<DrawerSensitiveWrapper>
+				<AppBar className={classes.topBar} position='fixed'>
+					<Toolbar className={classes.topBar}>
+						<Typography variant='h6' className={classes.title}>
+							<NavLink to='/' className={classes.title}>
+								{roundware.project ? roundware.project.projectName : ''}
+							</NavLink>
+						</Typography>
+						{/*<NavLink to='/'>
 						<img src={isExtraSmallScreen ? logoMinimal : logoSmall} className={classes.navLogo} />
 					</NavLink>*/}
-					<Route path='/listen'>
-						<ConcludeButton />
-					</Route>
-				</Toolbar>
-			</AppBar>
-
-			<PlatformMessage getMessage={getMessageOnLoad} />
-			<Toolbar />
-			<div className={classes.appContainer}>
-				<Switch>
-					<Route exact path='/' component={LandingPage} />
-					<Route path='/listen' component={ListenPage} />
-					<Route path='/speak' component={SpeakPage} />
-					<Route path='/conclusion' component={ConcludePage} />
-					<Route path='/debug' component={DebugPage} />
-				</Switch>
-			</div>
-
-			<AppBar position='sticky' className={classes.bottomBar}>
-				<Toolbar style={{ width: '100%', justifyContent: 'space-between' }}>
-					<Stack spacing={1} direction='row'>
-						<ShareButton />
-						{/*<Route path='/listen'>
+						<Route path='/listen'>
+							<ConcludeButton />
+						</Route>
+					</Toolbar>
+				</AppBar>
+				<PlatformMessage getMessage={getMessageOnLoad} />
+				<Toolbar />
+				<div className={classes.appContainer}>
+					<Switch>
+						<Route exact path='/' component={LandingPage} />
+						<Route path='/listen' component={ListenPage} />
+						<Route path='/speak' component={SpeakPage} />
+						<Route path='/conclusion' component={ConcludePage} />
+						<Route path='/debug' component={DebugPage} />
+					</Switch>
+				</div>
+				<AppBar position='sticky' className={classes.bottomBar}>
+					<Toolbar style={{ width: '100%', justifyContent: 'space-between' }}>
+						<Stack spacing={1} direction='row'>
+							<ShareButton />
+							{/*<Route path='/listen'>
 							{roundware?.project?.data?.speak_enabled && (
 								<Link to={`/speak`}>
 									<SpeakButton />
 								</Link>
 							)}
 						</Route>*/}
-					</Stack>
-					<div>
-						<Route path='/listen'>
-							{/*<ListenFilterDrawer />*/}
-							<RoundwareMixerControl />
-						</Route>
-					</div>
+						</Stack>
+						<div>
+							<Route path='/listen'>
+								{/*<ListenFilterDrawer />*/}
+								<RoundwareMixerControl />
+							</Route>
+						</div>
 
-					<div>
-						<InfoPopup />
-					</div>
-				</Toolbar>
-				<Switch>
-					<Route path='/listen' exact component={() => <React.Fragment></React.Fragment>} />
-					<Route path='/' component={ShareDialog} />
-				</Switch>
-			</AppBar>
-		</>
+						<div>
+							<InfoPopup />
+						</div>
+					</Toolbar>
+					<Switch>
+						<Route path='/listen' exact component={() => <React.Fragment></React.Fragment>} />
+						<Route path='/' component={ShareDialog} />
+					</Switch>
+				</AppBar>
+			</DrawerSensitiveWrapper>
+		</BrowserRouter>
 	);
 };

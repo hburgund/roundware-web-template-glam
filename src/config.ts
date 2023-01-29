@@ -10,7 +10,7 @@ let config: IConfig = {
 	project: {
 		apiUrl: 'https://prod.roundware.com/api/2',
 		serverUrl: 'https://prod.roundware.com/',
-		id: 10,
+		id: 37,
 		initialLocation: {
 			latitude: 50,
 			longitude: 27,
@@ -40,7 +40,7 @@ let config: IConfig = {
 
 	map: {
 		infoWindowItems: {
-			available: ['date', 'tags', 'description', 'audio', 'photo', 'text', 'actions'],
+			available: ['tags'],
 			actionItems: ['like', 'flag', 'show'],
 		},
 

@@ -258,10 +258,10 @@ const RoundwareProvider = (props: PropTypes) => {
 	const [concludeStarted, setConcludeStarted] = useState(false);
 	const [concludeTimeout, setConcludeTimeout] = useState<NodeJS.Timeout | null>(null);
 	const setupAutoConclude: IRoundwareContext[`setupAutoConclude`] = () => {
-		if (config.AUTO_CONCLUDE_DURATION && !concludeTimeout) {
+		if (config.features.autoConcludeDuration && !concludeTimeout) {
 			const timeoutId = setTimeout(() => {
 				conclude(false);
-			}, config.AUTO_CONCLUDE_DURATION * 1000);
+			}, config.features.autoConcludeDuration * 1000);
 			setConcludeTimeout(timeoutId);
 		}
 	};
@@ -270,14 +270,14 @@ const RoundwareProvider = (props: PropTypes) => {
 		if (play) {
 			await codaAudio.play().catch((e) => console.error(`Failed to play code audio`, e));
 		}
-		roundware.mixer?.playlist?.tracks.forEach((t) => t.fadeOut(config.CONCLUDE_DURATION));
-		roundware.mixer?.speakerTracks?.forEach((s) => s.player.fade(0, config.CONCLUDE_DURATION));
+		roundware.mixer?.playlist?.tracks.forEach((t) => t.fadeOut(config.features.concludeDuration));
+		roundware.mixer?.speakerTracks?.forEach((s) => s.player.fade(0, config.features.concludeDuration));
 		setTimeout(() => {
 			history.push(`/conclusion`);
 			forceUpdate();
 			roundware.mixer.stop();
 			setConcludeTimeout(null);
-		}, config.CONCLUDE_DURATION * 1000);
+		}, config.features.concludeDuration * 1000);
 	};
 
 	const resetAutoConclude = () => {
