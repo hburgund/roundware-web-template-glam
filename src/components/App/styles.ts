@@ -1,5 +1,5 @@
 import { makeStyles } from '@mui/styles';
-import config from 'config.json';
+import config from 'config';
 import { defaultTheme } from '../../styles';
 
 const useStyles = makeStyles(() => {
@@ -29,7 +29,7 @@ const useStyles = makeStyles(() => {
 			fontFamily: 'Hoefler Text',
 		},
 		navLogo: {
-			height: config.NAV_LOGO_HEIGHT || 34,
+			height: config.ui.navLogoHeight || 34,
 		},
 	};
 });

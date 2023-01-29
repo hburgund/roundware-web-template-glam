@@ -12,7 +12,7 @@ import MicIcon from '@mui/icons-material/Mic';
 import Fade from '@mui/material/Fade';
 import MuiLink from '@mui/material/Link';
 import { useHistory, Link } from 'react-router-dom';
-import config from 'config.json';
+import config from 'config';
 import { useRoundware } from 'hooks';
 interface Props {}
 
@@ -24,37 +24,19 @@ const ConcludePage = (props: Props) => {
 	};
 	return (
 		<Fade in timeout={1500}>
-			<Container
-				sx={{ display: 'flex',
-							justifyContent: 'center',
-							alignItems: 'center',
-							boxShadow: 'none',
-							maxWidth: '500px !important'
-						}}
-				component={Paper}
-			>
+			<Container sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', boxShadow: 'none', maxWidth: '500px !important' }} component={Paper}>
 				<Stack spacing={5} justifyContent='center' alignItems='center'>
 					<Typography variant='h4' textAlign='center'>
 						Thank you for listening to Family Association. We hope you enjoyed it!
 					</Typography>
 
-					<Button
-						sx={{ textTransform: 'none', width: '70%', maxWidth: '300px' }}
-						onClick={handleOnStartAgain}
-						startIcon={<ReplayIcon />}
-						variant='outlined'
-					>
+					<Button sx={{ textTransform: 'none', width: '70%', maxWidth: '300px' }} onClick={handleOnStartAgain} startIcon={<ReplayIcon />} variant='outlined'>
 						<Typography variant='h6' textAlign='center'>
 							Listen Again
 						</Typography>
 					</Button>
-					{config.SURVEY_LINK && (
-						<Button
-							sx={{ textTransform: 'none', width: '70%', maxWidth: '300px' }}
-							variant='outlined'
-							startIcon={<RateReviewIcon />}
-							href={config.SURVEY_LINK}
-						>
+					{config.features.surveyLink && (
+						<Button sx={{ textTransform: 'none', width: '70%', maxWidth: '300px' }} variant='outlined' startIcon={<RateReviewIcon />} href={config.features.surveyLink}>
 							<Typography variant='h6' textAlign='center'>
 								Share Your Feedback
 							</Typography>

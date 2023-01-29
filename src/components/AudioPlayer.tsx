@@ -3,7 +3,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseCircleIcon from '@mui/icons-material/PauseCircle';
 import PlayCircleFilledIcon from '@mui/icons-material/PlayCircleFilled';
 import { Box, IconButton, LinearProgress } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { WaveForm, WaveSurfer } from 'wavesurfer-react';
 import { WaveSurferProps, WaveSurferRef } from 'wavesurfer-react/dist/containers/WaveSurfer';
 // @ts-ignore
@@ -58,6 +58,12 @@ const AudioPlayer = ({ size = 'small', src }: PropTypes): JSX.Element | null => 
 		setPlaying(true);
 	};
 
+	useEffect(() => {
+		return () => {
+			wavesurferRef.current?.destroy();
+		};
+	}, []);
+
 	if (!src) return null;
 	return (
 		<div style={{ width: size === 'small' ? '100%' : '100%', minHeight: 160 }}>
@@ -67,10 +73,10 @@ const AudioPlayer = ({ size = 'small', src }: PropTypes): JSX.Element | null => 
 					fillParent={true}
 					mediaControls={true}
 					height={size === 'small' ? 64 : 128}
-					width={'100%'}
+					maxCanvasWidth={size === 'small' ? 4000 : 6000}
 					waveColor='grey'
-					barWidth='2'
-					barMinHeight='2'
+					barWidth={2}
+					barMinHeight={2}
 					// maxCanvasWidth={size === "small" ? 4000 : 6000}
 				></WaveForm>
 			</WaveSurfer>
@@ -80,15 +86,7 @@ const AudioPlayer = ({ size = 'small', src }: PropTypes): JSX.Element | null => 
 				) : (
 					<>
 						<IconButton onClick={handlePlay} size={size}>
-							{playing ?
-								<PauseCircleIcon
-									fontSize={'large'}
-									sx={{ color:'#0C9AEA', height:'3em', width:'3em' }}
-								/> :
-								<PlayCircleFilledIcon
-									fontSize={size}
-									sx={{ color:'#2ECE6E', height:'3em', width:'3em'  }}
-								/>}
+							{playing ? <PauseCircleIcon fontSize={'large'} sx={{ color: '#0C9AEA', height: '3em', width: '3em' }} /> : <PlayCircleFilledIcon fontSize={size} sx={{ color: '#2ECE6E', height: '3em', width: '3em' }} />}
 						</IconButton>
 					</>
 				)}
