@@ -8,6 +8,7 @@ import { defaultTheme } from '../styles';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import NoSleepProvider from './NoSleepProvider';
+import UserConfirmation from 'components/UserConfirmation';
 declare module '@mui/styles/defaultTheme' {
 	interface DefaultTheme extends Theme {}
 }
@@ -20,7 +21,7 @@ const Providers = (props: Props) => {
 	const [theme] = useState(defaultTheme);
 
 	return (
-		<BrowserRouter>
+		<BrowserRouter getUserConfirmation={(message, callback) => UserConfirmation(message, callback)}>
 			<NoSleepProvider>
 				<RoundwareProvider>
 					<UiConfigProvider>

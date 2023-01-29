@@ -52,7 +52,7 @@ export const App = () => {
 	}, [location.pathname]);
 
 	return (
-		<BrowserRouter getUserConfirmation={(message, callback) => UserConfirmation(message, callback)}>
+		<>
 			<CssBaseline />
 
 			<Helmet>
@@ -118,6 +118,6 @@ export const App = () => {
 					</Switch>
 				</AppBar>
 			</DrawerSensitiveWrapper>
-		</BrowserRouter>
+		</>
 	);
 };
