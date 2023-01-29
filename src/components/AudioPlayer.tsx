@@ -73,7 +73,10 @@ const AudioPlayer = ({ size = 'small', src }: PropTypes): JSX.Element | null => 
 					fillParent={true}
 					mediaControls={true}
 					height={size === 'small' ? 64 : 128}
-					waveColor='purple'
+					maxCanvasWidth={size === 'small' ? 4000 : 6000}
+					waveColor='grey'
+					barWidth={2}
+					barMinHeight={2}
 					// maxCanvasWidth={size === "small" ? 4000 : 6000}
 				></WaveForm>
 			</WaveSurfer>

@@ -34,7 +34,9 @@ export const useStyles = makeStyles((theme) => {
 			backgroundColor: 'transparent',
 			padding: '0 !important',
 			height: 150,
-			width: "100%",
+			justifyContent: 'center',
+			display: 'flex',
+			width: '100%',
 			[theme.breakpoints.down('sm')]: {
 				height: 150,
 			},
